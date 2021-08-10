@@ -73,6 +73,8 @@
     "nprogress",
     "screenfull",
     "submenu",
+    "vite",
+    "vitejs",
     "vuex"
   ]
 }
