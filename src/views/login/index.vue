@@ -18,7 +18,7 @@
       <n-row :gutter="[0, 24]">
         <n-col :span="24">
           <div class="validate-btn">
-            <n-button @click="handleValidateButtonClick; loginHandle()"
+            <n-button @click="loginHandle(message)"
               :disabled="model.email === null"
               round
               type="primary">
@@ -35,23 +35,12 @@
 import { defineComponent, ref } from "vue";
 import { useMessage } from "naive-ui";
 import { login } from "@/api/user";
+import router from "@/router";
+import { MessageApiInjection } from "naive-ui/lib/message/src/MessageProvider";
 
 export default defineComponent({
   name: "Login",
-  components: {},
-  methods: {
-    async loginHandle() {
-      try {
-        const res = await login({
-          email: "admin@admin.com",
-          password: "admin",
-        });
-        console.log(res);
-      } catch (err) {
-        console.log(err);
-      }
-    },
-  },
+
   setup() {
     const formRef = ref(null);
     const rPasswordFormItemRef = ref(null);
@@ -60,55 +49,63 @@ export default defineComponent({
       email: "admin@admin.com",
       password: "admin",
     });
+
     return {
       formRef,
       rPasswordFormItemRef,
       model: modelRef,
-      rules: {
-        email: [
-          {
-            required: true,
-            validator(rule, value) {
-              if (!value) {
-                return new Error("需要邮箱");
-              } else if (
-                !/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(
-                  value
-                )
-              ) {
-                return new Error("邮箱格式不正确");
-              }
-              return true;
-            },
-            trigger: ["input", "blur"],
-          },
-        ],
-        password: [
-          {
-            required: true,
-            validator(rule, value) {
-              if (!value) {
-                return new Error("需要密码");
-              }
-            },
-            trigger: ["input", "blur"],
-          },
-        ],
-      },
-      handleValidateButtonClick(e) {
-        e.preventDefault();
-        formRef.value.validate((errors) => {
-          if (!errors) {
-            message.success("验证成功");
-          } else {
-            console.log(errors);
-            message.error("验证失败");
-          }
-        });
-      },
+      rules,
+      loginHandle,
+      message,
     };
   },
 });
+
+// form rules
+const rules = {
+  email: [
+    {
+      required: true,
+      validator(rule, value) {
+        if (!value) {
+          return new Error("需要邮箱");
+        } else if (
+          !/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(value)
+        ) {
+          return new Error("邮箱格式不正确");
+        }
+        return true;
+      },
+      trigger: ["input", "blur"],
+    },
+  ],
+  password: [
+    {
+      required: true,
+      validator(rule, value) {
+        if (!value) {
+          return new Error("需要密码");
+        }
+      },
+      trigger: ["input", "blur"],
+    },
+  ],
+};
+
+// login handle
+const loginHandle = async (message: MessageApiInjection) => {
+  try {
+    const res = await login({
+      email: "admin@admin.com",
+      password: "admin",
+    });
+    message.success("登录成功");
+    router.push("/");
+  } catch (err) {
+    message.warning(err);
+    console.log(err);
+  }
+};
 </script>
 
 <style scoped>
