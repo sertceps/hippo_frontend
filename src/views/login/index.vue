@@ -18,7 +18,7 @@
       <n-row :gutter="[0, 24]">
         <n-col :span="24">
           <div class="validate-btn">
-            <n-button @click="loginHandle(message)"
+            <n-button @click="loginHandle"
               :disabled="model.email === null"
               round
               type="primary">
@@ -34,9 +34,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useMessage } from "naive-ui";
-import { login } from "@/api/user";
-import router from "@/router";
-import { MessageApiInjection } from "naive-ui/lib/message/src/MessageProvider";
+import { useLogin } from "./login";
 
 export default defineComponent({
   name: "Login",
@@ -44,11 +42,13 @@ export default defineComponent({
   setup() {
     const formRef = ref(null);
     const rPasswordFormItemRef = ref(null);
-    const message = useMessage();
     const modelRef = ref({
       email: "admin@admin.com",
       password: "admin",
     });
+
+    const message = useMessage();
+    const loginHandle = useLogin(message);
 
     return {
       formRef,
@@ -56,7 +56,6 @@ export default defineComponent({
       model: modelRef,
       rules,
       loginHandle,
-      message,
     };
   },
 });
@@ -90,21 +89,6 @@ const rules = {
       trigger: ["input", "blur"],
     },
   ],
-};
-
-// login handle
-const loginHandle = async (message: MessageApiInjection) => {
-  try {
-    const res = await login({
-      email: "admin@admin.com",
-      password: "admin",
-    });
-    message.success("登录成功");
-    router.push("/");
-  } catch (err) {
-    message.warning(err);
-    console.log(err);
-  }
 };
 </script>
 
