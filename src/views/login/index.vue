@@ -12,14 +12,13 @@
       <n-form-item path="password"
         label="密码">
         <n-input v-model:value="model.password"
-          @input="handlePasswordInput"
           type="password"
           @keydown.enter.prevent />
       </n-form-item>
       <n-row :gutter="[0, 24]">
         <n-col :span="24">
-          <div style="display: flex; justify-content: flex-end;">
-            <n-button @click="handleValidateButtonClick"
+          <div class="validate-btn">
+            <n-button @click="handleValidateButtonClick; loginHandle()"
               :disabled="model.email === null"
               round
               type="primary">
@@ -32,28 +31,35 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useMessage } from "naive-ui";
+import { login } from "@/api/user";
 
 export default defineComponent({
   name: "Login",
   components: {},
+  methods: {
+    async loginHandle() {
+      try {
+        const res = await login({
+          email: "admin@admin.com",
+          password: "admin",
+        });
+        console.log(res);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
   setup() {
     const formRef = ref(null);
     const rPasswordFormItemRef = ref(null);
     const message = useMessage();
     const modelRef = ref({
-      email: null,
-      password: null,
+      email: "admin@admin.com",
+      password: "admin",
     });
-    function validatePasswordStartWith(rule, value) {
-      return (
-        modelRef.value.password &&
-        modelRef.value.password.startsWith(value) &&
-        modelRef.value.password.length >= value.length
-      );
-    }
     return {
       formRef,
       rPasswordFormItemRef,
@@ -115,5 +121,10 @@ export default defineComponent({
 .login {
   width: 400px;
   transform: translateY(-50%);
+}
+
+.validate-btn {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>>
