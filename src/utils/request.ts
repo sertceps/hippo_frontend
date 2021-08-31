@@ -14,8 +14,6 @@ service.interceptors.request.use(config => {
   config.headers['Access-Control-Allow-Origin'] = '*';
   return config;
 }, error => {
-  console.log('axios interceptors request error');
-  console.log(error);
   Promise.reject(error)
 })
 

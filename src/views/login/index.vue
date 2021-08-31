@@ -1,30 +1,27 @@
 <template>
   <div class="login-parent">
-    <n-form class="login"
-      :model="model"
-      ref="formRef"
-      :rules="rules">
-      <n-form-item path="email"
-        label="邮箱">
-        <n-input v-model:value="model.email"
-          placeholder="请输入邮箱"
-          @keydown.enter.prevent />
+    <n-form class="login" :model="modelRef" ref="formRef" :rules="rules">
+      <n-form-item path="email" label="邮箱">
+        <n-input v-model:value="modelRef.email" placeholder="请输入邮箱" @keydown.enter.prevent />
       </n-form-item>
-      <n-form-item path="password"
-        label="密码">
-        <n-input v-model:value="model.password"
+      <n-form-item path="password" label="密码">
+        <n-input
+          v-model:value="modelRef.password"
           type="password"
           placeholder="请输入密码"
           @keydown.enter.prevent
-          @keyup.enter="login" />
+          @keyup.enter="loginHandle"
+        />
       </n-form-item>
       <n-row :gutter="[0, 24]">
         <n-col :span="24">
           <div class="validate-btn">
-            <n-button @click="login"
-              :disabled="model.email === ''"
+            <n-button
+              @click="loginHandle"
+              :disabled="modelRef.email === '' || modelRef.password === ''"
               round
-              type="primary">
+              type="primary"
+            >
               验证
             </n-button>
           </div>
@@ -34,86 +31,61 @@
   </div>
 </template>
 
-<script lang="ts">
-import { Md5 } from "ts-md5";
-import { defineComponent, ref } from "vue";
-import { useLogin } from "./login";
-import { useMessage } from "naive-ui";
+<script lang="ts" setup>
+  import { Md5 } from 'ts-md5';
+  import { ref } from 'vue';
+  import { login } from '@/api/user';
+  import { useMessage } from 'naive-ui';
+  import router from '@/router';
 
-export default defineComponent({
-  name: "Login",
+  // name: "Login";
+  const formRef = ref(null);
+  const modelRef = ref({
+    email: '',
+    password: '',
+  });
+  const message = useMessage();
 
-  setup() {
-    const formRef = ref(null);
-    const rPasswordFormItemRef = ref(null);
-    const modelRef = ref({
-      email: "",
-      password: "",
-    });
-    const message = useMessage();
-    const loginHandle = useLogin(message);
+  const validateEmail = (rule: any, value: string) => {
+    return !/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(value)
+      ? new Error('邮箱格式不正确')
+      : true;
+  };
 
-    const login = () => {
-      loginHandle(modelRef.value.email, modelRef.value.password);
-    };
+  const loginHandle = async () => {
+    try {
+      await login(modelRef.value.email, modelRef.value.password);
+      message.success('登录成功');
+      // router.replace("/");
+    } catch (err) {
+      message.error(err);
+    }
+  };
 
-    return {
-      formRef,
-      rPasswordFormItemRef,
-      model: modelRef,
-      rules,
-      loginHandle,
-      login,
-    };
-  },
-});
-
-// form rules
-const rules = {
-  email: [
-    {
-      required: true,
-      validator(rule, value) {
-        if (!value) {
-          return new Error("需要邮箱");
-        } else if (
-          !/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(value)
-        ) {
-          return new Error("邮箱格式不正确");
-        }
-        return true;
-      },
-      trigger: ["input", "blur"],
-    },
-  ],
-  password: [
-    {
-      required: true,
-      validator(rule, value) {
-        if (!value) {
-          return new Error("需要密码");
-        }
-      },
-      trigger: ["input", "blur"],
-    },
-  ],
-};
+  const rules = {
+    email: [
+      { validator: validateEmail, trigger: ['input', 'blur'] },
+      { required: true, message: '请输入邮箱', trigger: ['blur'] },
+    ],
+    password: [{ required: true, message: '请输入密码', trigger: ['blur'] }],
+  };
 </script>
 
 <style scoped>
-.login-parent {
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  align-items: center;
-}
-.login {
-  width: 400px;
-  transform: translateY(-50%);
-}
+  .login-parent {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+  }
+  .login {
+    width: 400px;
+    transform: translateY(-50%);
+  }
 
-.validate-btn {
-  display: flex;
-  justify-content: flex-end;
-}
-</style>>
+  .validate-btn {
+    display: flex;
+    justify-content: flex-end;
+  }
+</style>
+>

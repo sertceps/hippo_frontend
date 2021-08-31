@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "ts-md5": "^1.2.9",
     "vue": "^3.2.6",
     "vue-router": "^4.0.11"
   },
