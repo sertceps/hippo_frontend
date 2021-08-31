@@ -7,19 +7,22 @@
       <n-form-item path="email"
         label="邮箱">
         <n-input v-model:value="model.email"
+          placeholder="请输入邮箱"
           @keydown.enter.prevent />
       </n-form-item>
       <n-form-item path="password"
         label="密码">
         <n-input v-model:value="model.password"
           type="password"
-          @keydown.enter.prevent />
+          placeholder="请输入密码"
+          @keydown.enter.prevent
+          @keyup.enter="login" />
       </n-form-item>
       <n-row :gutter="[0, 24]">
         <n-col :span="24">
           <div class="validate-btn">
-            <n-button @click="loginHandle"
-              :disabled="model.email === null"
+            <n-button @click="login"
+              :disabled="model.email === ''"
               round
               type="primary">
               验证
@@ -32,9 +35,10 @@
 </template>
 
 <script lang="ts">
+import { Md5 } from "ts-md5";
 import { defineComponent, ref } from "vue";
-import { useMessage } from "naive-ui";
 import { useLogin } from "./login";
+import { useMessage } from "naive-ui";
 
 export default defineComponent({
   name: "Login",
@@ -43,12 +47,15 @@ export default defineComponent({
     const formRef = ref(null);
     const rPasswordFormItemRef = ref(null);
     const modelRef = ref({
-      email: "admin@admin.com",
-      password: "admin",
+      email: "",
+      password: "",
     });
-
     const message = useMessage();
     const loginHandle = useLogin(message);
+
+    const login = () => {
+      loginHandle(modelRef.value.email, modelRef.value.password);
+    };
 
     return {
       formRef,
@@ -56,6 +63,7 @@ export default defineComponent({
       model: modelRef,
       rules,
       loginHandle,
+      login,
     };
   },
 });

@@ -1,4 +1,5 @@
 import axios from "axios";
+
 const baseApiUrl = import.meta.env.VITE_BASE_API_URL as string
 
 const service = axios.create({
@@ -21,8 +22,6 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(response => {
   return response.data
 }, error => {
-  console.log('axios interceptors response error');
-  console.log(error);
   Promise.reject(error)
 })
 

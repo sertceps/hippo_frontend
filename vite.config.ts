@@ -1,9 +1,8 @@
-import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-
+import { defineConfig } from 'vite'
 import path from 'path'
 
-const myResolve = (pathName) => {
+const myResolve = (pathName: string) => {
   return path.resolve(__dirname, pathName)
 }
 
@@ -15,5 +14,4 @@ export default defineConfig({
       { find: '@', replacement: myResolve('src') }
     ]
   }
-
 })

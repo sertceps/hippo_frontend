@@ -1,21 +1,20 @@
 // login handle
-
 import { login } from "@/api/user";
 import router from "@/router";
 import { MessageApiInjection } from "naive-ui/lib/message/src/MessageProvider";
 
 export function useLogin(message: MessageApiInjection) {
-  const loginHandle = async () => {
+
+  const loginHandle = async (email: string, password: string) => {
     try {
-      const res = await login({
-        email: "admin@admin.com",
-        password: "admin",
-      });
+      console.log(password);
+
+      await login(email, password);
       message.success("登录成功");
-      router.push("/");
+      router.replace("/");
     } catch (err) {
-      message.warning(err);
-      console.log(err);
+      console.log('this');
+      message.error(err);
     }
   };
 

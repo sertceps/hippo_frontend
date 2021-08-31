@@ -5,6 +5,7 @@
       "@/*": ["src/*"]
     },
     "target": "esnext",
+    "useDefineForClassFields": true,
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
