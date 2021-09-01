@@ -54,7 +54,7 @@
 
   const loginHandle = async () => {
     try {
-      await login(modelRef.value.email, modelRef.value.password);
+      await login(modelRef.value.email, Md5.hashStr(modelRef.value.password));
       message.success('登录成功');
       // router.replace('/'); // 不会刷新页面？
       router.push({ path: '/' });
