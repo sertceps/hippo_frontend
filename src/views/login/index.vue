@@ -56,7 +56,8 @@
     try {
       await login(modelRef.value.email, modelRef.value.password);
       message.success('登录成功');
-      // router.replace("/");
+      // router.replace('/'); // 不会刷新页面？
+      router.push({ path: '/' });
     } catch (err) {
       message.error(err);
     }
