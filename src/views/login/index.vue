@@ -34,7 +34,7 @@
 <script lang="ts" setup>
   import { Md5 } from 'ts-md5';
   import { ref } from 'vue';
-  import { login } from '@/api/user';
+  import { loginApi } from '@/api/user';
   import { useMessage } from 'naive-ui';
   import router from '@/router';
 
@@ -46,24 +46,21 @@
   const message = useMessage();
 
   const validateEmail = (rule: any, value: string) => {
-    return !/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(value)
-      ? new Error('邮箱格式不正确')
-      : true;
+    return !/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(value) ? new Error('邮箱格式不正确') : true;
   };
 
   const loginHandle = async () => {
     try {
-      const { access_token } = await login(
+      const { access_token, jwt_expires_in } = await loginApi(
         modelRef.value.email,
         Md5.hashStr(modelRef.value.password)
       );
-      console.log(access_token);
-      console.log('this');
+      // localstorage & vuex?
+      // localStorage.setItem('token', access_token);
+      // localStorage.setItem('expires_at', String(jwt_expires_in));
       message.success('登录成功');
-      router.replace('/'); // 不会刷新页面？
+      router.replace('/');
     } catch (err) {
-      console.log(err);
-
       message.error(err);
     }
   };

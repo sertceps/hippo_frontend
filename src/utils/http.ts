@@ -57,7 +57,7 @@ export class HttpClient {
   }
 }
 
-export const httpClient = new HttpClient({
+export const http = new HttpClient({
   baseURL: import.meta.env.VITE_BASE_API_URL as string,
   timeout: 1000
 })

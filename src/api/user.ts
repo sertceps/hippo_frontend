@@ -1,13 +1,13 @@
-import { httpClient } from '@/utils/http'
+import { http } from '@/utils/http'
 
 
 interface LoginReturn {
   access_token: string,
-  expires_at: number
+  jwt_expires_in: number
 }
 
-export function login(email: string, password: string) {
-  return httpClient.request<LoginReturn>({
+export function loginApi(email: string, password: string) {
+  return http.request<LoginReturn>({
     url: 'users/login',
     method: 'post',
     data: {
