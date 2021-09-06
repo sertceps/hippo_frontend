@@ -34,11 +34,10 @@
 <script lang="ts" setup>
   import { Md5 } from 'ts-md5';
   import { ref } from 'vue';
-  import { login } from '@/api/user';
+  import { login, login2 } from '@/api/user';
   import { useMessage } from 'naive-ui';
   import router from '@/router';
 
-  // name: "Login";
   const formRef = ref(null);
   const modelRef = ref({
     email: '',
@@ -54,11 +53,17 @@
 
   const loginHandle = async () => {
     try {
-      await login(modelRef.value.email, Md5.hashStr(modelRef.value.password));
+      const { access_token } = await login2(
+        modelRef.value.email,
+        Md5.hashStr(modelRef.value.password)
+      );
+      console.log(access_token);
+      console.log('this');
       message.success('登录成功');
-      // router.replace('/'); // 不会刷新页面？
-      router.push({ path: '/' });
+      router.replace('/'); // 不会刷新页面？
     } catch (err) {
+      console.log(err);
+
       message.error(err);
     }
   };
@@ -89,4 +94,3 @@
     justify-content: flex-end;
   }
 </style>
->
