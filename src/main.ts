@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router/index'
+import store from './store'
 import { create, NButton, NCol, NForm, NFormItem, NInput, NMessageProvider, NRow } from 'naive-ui'
 
 const naive = create({
@@ -11,5 +12,6 @@ const naive = create({
 
 const app = createApp(App)
 app.use(router)
+app.use(store)
 app.use(naive)
 app.mount('#app')

@@ -1,3 +1,4 @@
+// 有没有更好的封装方式？
 import axios from "axios";
 
 const baseApiUrl = import.meta.env.VITE_BASE_API_URL as string
