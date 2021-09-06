@@ -1,11 +1,15 @@
 <template>
-  <h1>Article</h1>
+  <div>Article </div>
 </template>
 
-<script lang="ts">
-  export default {
-    name: 'Article',
-  };
-</script>
+<script setup lang="ts">
+  import { getArticlesApi } from '@/api/article';
 
-<style></style>
+  const getArticle = async () => {
+    const articles = await getArticlesApi(1, 5);
+    console.log(articles);
+  };
+
+  getArticle();
+</script>
+<style scoped></style>

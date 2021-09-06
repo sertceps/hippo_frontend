@@ -34,12 +34,11 @@
 <script lang="ts" setup>
   import { Md5 } from 'ts-md5';
   import { ref } from 'vue';
-  import UserApis from '@/api/user';
+  import { loginApi } from '@/api/user';
   import { useMessage } from 'naive-ui';
   import router from '@/router';
   import store from '@/store';
 
-  // name: "Login";
   const formRef = ref(null);
   const modelRef = ref({
     email: '',
@@ -53,10 +52,13 @@
 
   const loginHandle = async () => {
     try {
-      const res = await UserApis.login(modelRef.value.email, Md5.hashStr(modelRef.value.password));
-      console.log(res);
-
-      // store.commit('setToken', { token: access_token });
+      const { access_token, jwt_expires_in } = await loginApi(
+        modelRef.value.email,
+        Md5.hashStr(modelRef.value.password)
+      );
+      // localstorage & vuex?
+      // localStorage.setItem('token', access_token);
+      // localStorage.setItem('expires_at', String(jwt_expires_in));
       message.success('登录成功');
       router.replace('/');
     } catch (err) {
@@ -90,4 +92,3 @@
     justify-content: flex-end;
   }
 </style>
->

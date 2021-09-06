@@ -1,17 +1,18 @@
-import request from '@/utils/request'
+import { http } from '@/utils/http'
 
-class UserApis {
-  static login(email: string, password: string) {
-    return request({
-      url: 'users/login',
-      method: 'POST',
-      data: {
-        email,
-        password
-      }
-    })
-  }
+interface LoginReturn {
+  access_token: string,
+  jwt_expires_in: number
 }
 
+export function loginApi(email: string, password: string) {
+  return http.request<LoginReturn>({
+    url: 'users/login',
+    method: 'post',
+    data: {
+      email,
+      password
+    }
+  })
 
-export default UserApis
+}
