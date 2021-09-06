@@ -34,7 +34,7 @@
 <script lang="ts" setup>
   import { Md5 } from 'ts-md5';
   import { ref } from 'vue';
-  import { login, login2 } from '@/api/user';
+  import { login } from '@/api/user';
   import { useMessage } from 'naive-ui';
   import router from '@/router';
 
@@ -53,7 +53,7 @@
 
   const loginHandle = async () => {
     try {
-      const { access_token } = await login2(
+      const { access_token } = await login(
         modelRef.value.email,
         Md5.hashStr(modelRef.value.password)
       );

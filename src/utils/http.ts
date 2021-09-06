@@ -39,7 +39,7 @@ export class HttpClient {
       if (!error.response) return Promise.reject(error.message)
       console.log(error);
 
-      if (error.response.status === 401) return Promise.reject('请登陆后操作') // router/sotre
+      if (error.response.status === 401) return Promise.reject('请登陆后操作') // router/store
       if (error.response.status === 403) return Promise.reject('无权限')
       if (error.response.status === 404) return Promise.reject('API 不存在')
       if (typeof error.response.data === 'string' || error.response.data instanceof String) {
