@@ -52,8 +52,7 @@
 
   const store = useStore();
   // const access_token = computed(() => store.state.user.access_token);
-  const setToken = (token: string) => store.commit('user/SET_TOKEN', { access_token: token });
-  // store.state.user.access_token
+  const setToken = async (token: string) => store.dispatch('user/setToken', token);
 
   const loginHandle = async () => {
     try {
@@ -61,9 +60,7 @@
         modelRef.value.email,
         Md5.hashStr(modelRef.value.password)
       );
-      localStorage.setItem('token', access_token);
-      // localStorage.setItem('expires_at', String(jwt_expires_in));
-      setToken(access_token);
+      await setToken(access_token);
       message.success('登录成功');
       router.replace('/');
     } catch (err) {

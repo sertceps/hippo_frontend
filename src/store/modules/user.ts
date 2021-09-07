@@ -1,5 +1,6 @@
 import { Module } from "vuex";
 import UserState from "../interfaces/user.state";
+import { setToken } from "../localStorage/token";
 
 const UserModule: Module<UserState, any> = {
   namespaced: true,
@@ -8,8 +9,14 @@ const UserModule: Module<UserState, any> = {
     expires_at: null
   },
   mutations: {
-    SET_TOKEN: (state, payload: { access_token: string }) => {
-      state.access_token = payload.access_token
+    SET_TOKEN: (state, token) => {
+      state.access_token = token
+      setToken(token)
+    }
+  },
+  actions: {
+    setToken({ commit }, token) {
+      commit('SET_TOKEN', token)
     }
   }
 }
