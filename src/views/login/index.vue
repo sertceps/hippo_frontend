@@ -37,7 +37,7 @@
   import { loginApi } from '@/api/user';
   import { useMessage } from 'naive-ui';
   import router from '@/router';
-  import { useStore } from '@/store';
+  import { useUserStore } from '@/store';
 
   const formRef = ref(null);
   const modelRef = ref({
@@ -50,9 +50,7 @@
     return !/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(value) ? new Error('邮箱格式不正确') : true;
   };
 
-  const store = useStore();
-  // const access_token = computed(() => store.state.user.access_token);
-  const setToken = async (token: string) => store.dispatch('user/setToken', token);
+  const userStore = useUserStore();
 
   const loginHandle = async () => {
     try {
@@ -60,7 +58,7 @@
         modelRef.value.email,
         Md5.hashStr(modelRef.value.password)
       );
-      await setToken(access_token);
+      userStore.setToken(access_token);
       message.success('登录成功');
       router.replace('/');
     } catch (err) {
@@ -94,3 +92,4 @@
     justify-content: flex-end;
   }
 </style>
+// https://cloud.tencent.com/developer/article/1446922 // 异常处理

@@ -1,4 +1,4 @@
-import { http } from "@/utils/http";
+import { http } from '@/utils/http';
 
 export function getArticlesApi(page = 1, size = 10) {
   return http.request({
@@ -6,7 +6,11 @@ export function getArticlesApi(page = 1, size = 10) {
     method: 'GET',
     params: {
       page,
-      size
-    }
-  })
+      size,
+    },
+  });
+}
+
+export function createArticlesApi() {
+  return http.request({});
 }
