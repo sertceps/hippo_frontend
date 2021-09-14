@@ -1,18 +1,38 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
+const Nav = () => import('@/components/nav/index.vue');
 
-const routes = [
-  { path: '/', name: 'Home', component: () => import("../views/home/index.vue") },
-  { path: '/articles', name: 'Article', component: () => import("../views/article/index.vue") },
-  { path: '/login', name: 'login', component: () => import("../views/login/index.vue") },
-  { path: '/404', name: 'NotFound', component: () => import("../views/404/index.vue") }
-]
+const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    name: 'Home',
+    component: Nav,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/home/index.vue'),
+      },
+    ],
+  },
+  { path: '/articles', name: 'Article', component: () => import('@/views/article/index.vue') },
+  {
+    path: '/login',
+    name: 'login',
+    component: Nav,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/login/index.vue'),
+      },
+    ],
+  },
+  { path: '/404', name: 'NotFound', component: () => import('@/views/404/index.vue') },
+  { path: '/:w+', redirect: '/404' },
+];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
+  routes,
+});
 
-export default router
-
-
+export default router;

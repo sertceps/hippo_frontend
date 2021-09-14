@@ -79,7 +79,7 @@
   .login-parent {
     display: flex;
     justify-content: center;
-    height: 100%;
+    height: calc(100vh - 63px);
     align-items: center;
   }
   .login {
