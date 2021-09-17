@@ -1,17 +1,33 @@
 <template>
-  <n-card title="卡片"> 卡片内容 </n-card>
+  <main>
+    <masonry-wall :items="articles" :column-width="300" :padding="16">
+      <template #default="{ item, index }">
+        <n-card :title="item.title" hoverable>
+          <template #cover>
+            <img src="src/assets/images/article-background.jpeg" />
+          </template>
+          <section>
+            <n-avatar round size="large" src="src/assets/images/avatar.jpg" />
+          </section>
+          {{ item.abstract }}
+          <template #footer>j</template>
+        </n-card>
+      </template>
+    </masonry-wall>
+  </main>
 </template>
 
 <script lang="ts" setup>
   import { getArticlesApi } from '@/api/article';
   import { computed } from 'vue-demi';
+  import { useMessage } from 'naive-ui';
 
-  try {
-    const { count, articles } = await getArticlesApi();
-    // console.log(count);
-    // console.log(articles);
-  } catch (err) {
-    console.log(err);
-  }
+  const message = useMessage();
+  const { count, articles } = await getArticlesApi();
 </script>
-<style scoped></style>
+
+<style scoped>
+  main {
+    padding: 30px;
+  }
+</style>

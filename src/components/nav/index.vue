@@ -1,7 +1,9 @@
 <template>
   <nav></nav>
   <div class="placeholder"></div>
-  <router-view></router-view>
+  <suspense>
+    <router-view></router-view>
+  </suspense>
 </template>
 
 <script lang="ts" setup></script>
@@ -20,6 +22,7 @@
     position: fixed;
     background-color: #fff;
     border-bottom: 1px solid rgb(239, 239, 245);
+    z-index: 999;
   }
 
   .placeholder {
