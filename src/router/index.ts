@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
-const Nav = () => import('@/components/nav/index.vue');
+// const Nav = () => import('@/components/nav/index.vue');
+const Layout = () => import('@/layout/index.vue');
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',
-    component: Nav,
+    component: Layout,
     children: [
       {
         path: '',
@@ -18,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'login',
-    component: Nav,
+    component: Layout,
     children: [
       {
         path: '',

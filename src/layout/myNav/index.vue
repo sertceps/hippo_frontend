@@ -1,9 +1,6 @@
 <template>
   <nav></nav>
   <div class="placeholder"></div>
-  <suspense>
-    <router-view></router-view>
-  </suspense>
 </template>
 
 <script lang="ts" setup></script>
