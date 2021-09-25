@@ -14,12 +14,26 @@ import {
   NAvatar,
   NBackTop,
   NDropdown,
+  NMenu,
 } from 'naive-ui';
 import { createPinia } from 'pinia';
 import MasonryWall from '@yeger/vue-masonry-wall';
 
 const naive = create({
-  components: [NMessageProvider, NButton, NForm, NFormItem, NInput, NRow, NCol, NCard, NAvatar, NBackTop, NDropdown],
+  components: [
+    NMessageProvider,
+    NButton,
+    NForm,
+    NFormItem,
+    NInput,
+    NRow,
+    NCol,
+    NCard,
+    NAvatar,
+    NBackTop,
+    NDropdown,
+    NMenu,
+  ],
 });
 
 const app = createApp(App);

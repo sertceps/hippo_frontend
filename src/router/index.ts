@@ -15,7 +15,22 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
-  { path: '/articles', name: 'Article', component: () => import('@/views/article/index.vue') },
+  // 前端路由命名设计？
+  {
+    path: '/articles',
+    name: 'Article',
+    component: Layout,
+    children: [
+      {
+        path: 'create',
+        component: () => import('@/views/article/create/index.vue'),
+      },
+      {
+        path: ':id',
+        component: () => import('@/views/article/show/index.vue'),
+      },
+    ],
+  },
   {
     path: '/login',
     name: 'login',

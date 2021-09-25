@@ -4,10 +4,10 @@
       <template #default="{ item, index }">
         <n-card :title="item.title" hoverable>
           <template #cover>
-            <img src="src/assets/images/article-background.jpeg" />
+            <img class="cover" src="src/assets/images/article-background.jpeg" draggable="false" />
           </template>
           <section>
-            <n-avatar round size="large" src="src/assets/images/avatar.jpg" />
+            <n-avatar class="avatar" round size="large" src="src/assets/images/avatar.jpg" draggable="false" />
           </section>
           {{ item.abstract }}
           <template #footer>j</template>
@@ -19,7 +19,6 @@
 
 <script lang="ts" setup>
   import { getArticlesApi } from '@/api/article';
-  import { computed } from 'vue-demi';
   import { useMessage } from 'naive-ui';
 
   const message = useMessage();
@@ -29,5 +28,13 @@
 <style scoped>
   main {
     padding: 30px;
+  }
+  .n-card {
+    cursor: pointer;
+  }
+  .cover,
+  .avatar {
+    user-select: none;
+    -webkit-user-drag: none;
   }
 </style>
