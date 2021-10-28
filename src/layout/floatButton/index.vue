@@ -1,6 +1,6 @@
 <template>
   <n-dropdown trigger="hover" :options="options">
-    <n-button circle color="#fff">
+    <n-button circle color="#fff" class="float-button">
       <IconConfigProvider color="green" size="32">
         <Icon>
           <AutoAwesomeOutlined></AutoAwesomeOutlined>
@@ -35,8 +35,8 @@
   ];
 </script>
 
-<style>
-  .n-button {
+<style scped>
+  .float-button {
     width: 48px;
     height: 48px;
     position: fixed;

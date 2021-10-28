@@ -23,6 +23,6 @@
   }
 
   .placeholder {
-    height: 63px;
+    height: 64px;
   }
 </style>

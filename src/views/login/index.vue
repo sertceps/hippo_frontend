@@ -13,20 +13,16 @@
           @keyup.enter="loginHandle"
         />
       </n-form-item>
-      <n-row :gutter="[0, 24]">
-        <n-col :span="24">
-          <div class="validate-btn">
-            <n-button
-              @click="loginHandle"
-              :disabled="modelRef.email === '' || modelRef.password === ''"
-              round
-              type="primary"
-            >
-              验证
-            </n-button>
-          </div>
-        </n-col>
-      </n-row>
+      <div class="validate-btn">
+        <n-button
+          @click="loginHandle"
+          :disabled="modelRef.email === '' || modelRef.password === ''"
+          round
+          type="primary"
+        >
+          验证
+        </n-button>
+      </div>
     </n-form>
   </div>
 </template>
@@ -77,19 +73,20 @@
 
 <style scoped>
   .login-parent {
-    display: flex;
-    justify-content: center;
-    height: calc(100vh - 63px);
-    align-items: center;
+    display: grid;
+    height: calc(100vh - 64px);
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
   }
   .login {
-    width: 400px;
-    transform: translateY(-50%);
+    grid-column: 5 / span 4;
+    grid-row: 4 / span 3;
+    min-width: 300px;
   }
 
   .validate-btn {
     display: flex;
-    justify-content: flex-end;
+    justify-content: end;
   }
 </style>
 // https://cloud.tencent.com/developer/article/1446922 // 异常处理
