@@ -12,6 +12,13 @@ export function getArticlesApi(page = 1, size = 10, orderBy = 'createdAt') {
   });
 }
 
-export function createArticlesApi() {
-  return http.request({});
+export function createArticlesApi(title: string, content: string) {
+  return http.request<{ id: string }>({
+    url: 'articles',
+    method: 'post',
+    data: {
+      title,
+      content,
+    },
+  });
 }

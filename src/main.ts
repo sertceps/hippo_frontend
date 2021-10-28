@@ -15,6 +15,7 @@ import {
   NBackTop,
   NDropdown,
   NMenu,
+  NSpace,
 } from 'naive-ui';
 import { createPinia } from 'pinia';
 import MasonryWall from '@yeger/vue-masonry-wall';
@@ -33,6 +34,7 @@ const naive = create({
     NBackTop,
     NDropdown,
     NMenu,
+    NSpace,
   ],
 });
 
