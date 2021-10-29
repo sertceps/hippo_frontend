@@ -3,7 +3,7 @@
     <n-button circle color="#fff" class="float-button">
       <IconConfigProvider color="green" size="32">
         <Icon>
-          <AutoAwesomeOutlined></AutoAwesomeOutlined>
+          <EditOutlined></EditOutlined>
         </Icon>
       </IconConfigProvider>
     </n-button>
@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
   import { Icon, IconConfigProvider } from '@vicons/utils';
-  import { AutoAwesomeOutlined } from '@vicons/material';
+  import { EditOutlined } from '@vicons/antd';
 
   const options = [
     {
