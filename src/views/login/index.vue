@@ -30,7 +30,7 @@
 <script lang="ts" setup>
   import { Md5 } from 'ts-md5';
   import { computed, ref } from 'vue';
-  import { loginApi } from '@/api/user';
+  import { loginApi } from '@/api/login/user';
   import { useMessage } from 'naive-ui';
   import router from '@/router';
   import { useUserStore } from '@/store';

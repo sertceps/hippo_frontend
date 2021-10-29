@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { getArticlesApi } from '@/api/article';
+  import { getArticlesApi } from '@/api/article/article';
   import { useMessage } from 'naive-ui';
 
   const message = useMessage();

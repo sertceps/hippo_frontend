@@ -21,7 +21,7 @@ export class HttpClient {
     /** 请求拦截器配置 */
     this.axiosInstance.interceptors.request.use((config) => {
       // 是每次从 localStorage 中获取的吗？
-      config.headers['Authorization'] = getToken();
+      config.headers!['Authorization'] = ' ' + getToken();
 
       return config;
     });
