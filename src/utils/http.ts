@@ -1,66 +1,78 @@
-import type { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios';
-import axios from 'axios';
-import { getToken } from '@/store/localStorage/token';
+import axios, { Axios, AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export class HttpClient {
+class VAxios {
   private axiosInstance: AxiosInstance;
+  private static VAxiosInstance: VAxios;
 
-  constructor(options: AxiosRequestConfig) {
-    this.axiosInstance = axios.create(options);
-    this.setInterceptors();
+  private constructor(config: AxiosRequestConfig) {
+    this.axiosInstance = axios.create(config);
+    this.setRequestInterceptors();
+    this.setResponseInterceptors();
   }
 
-  /** 设置通用请求头 */
-  setHeader(headers: any): void {
-    if (!this.axiosInstance) return;
-    Object.assign(this.axiosInstance.defaults.headers, headers);
+  /** 创建实例*/
+  static getInstance() {
+    if (!this.VAxiosInstance) {
+      this.VAxiosInstance = new this({
+        baseURL: import.meta.env.VITE_BASE_API as string,
+        timeout: 10000,
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          Accept: '*/*',
+        },
+      });
+    }
+
+    return this.VAxiosInstance;
   }
 
-  /** 设置拦截器 */
-  private setInterceptors() {
-    /** 请求拦截器配置 */
+  /** 设置请求拦截器 */
+  private setRequestInterceptors() {
+    // 配置
     this.axiosInstance.interceptors.request.use((config) => {
-      // 是每次从 localStorage 中获取的吗？
-      config.headers!['Authorization'] = ' ' + getToken();
+      config.headers!['Authorization'] = 'Bearer ' + 'token';
 
       return config;
     });
 
-    /** 请求拦截器错误处理配置 */
+    // 错误处理
     this.axiosInstance.interceptors.request.use(undefined, (error) => {
-      // 统一捕获？
-      return Promise.reject(error);
-    });
-
-    /** 响应拦截器配置 */
-    this.axiosInstance.interceptors.response.use((response) => {
-      return response.data;
-    });
-
-    /** 响应拦截器错误处理配置 */
-    this.axiosInstance.interceptors.response.use(undefined, (error) => {
-      if (!error.response) return Promise.reject(error.message);
-      console.log(error);
-
-      if (error.response.status === 401) return Promise.reject('请登陆后操作'); // router/store
-      if (error.response.status === 403) return Promise.reject('无权限');
-      if (error.response.status === 404) return Promise.reject('API 不存在');
-      if (typeof error.response.data === 'string' || error.response.data instanceof String) {
-        return Promise.reject(error.response.data);
-      } else if ('message' in error.response.data) return Promise.reject(error.response.data.message);
-      // parseError(response.data.message)
-      // console.log(error);
       return Promise.reject(error);
     });
   }
 
-  /** 请求方法 */
+  /** 设置响应拦截器 */
+  private setResponseInterceptors() {
+    // 配置
+    this.axiosInstance.interceptors.response.use((response) => {
+      return response.data;
+    });
+
+    // 错误处理
+    this.axiosInstance.interceptors.response.use(undefined, (error) => {
+      if (!error.response) return Promise.reject(error.message);
+
+      switch (error.response.status) {
+        case 401:
+          Promise.reject('请登陆后操作');
+        case 403:
+          Promise.reject('权限不足');
+        case 404:
+          Promise.reject('API 不存在');
+      }
+
+      if (typeof error.response.data === 'string' || error.response.data instanceof String) {
+        return Promise.reject(error.response.data);
+      } else if ('message' in error.response.data) return Promise.reject(error.response.data.message);
+
+      return Promise.reject(error);
+    });
+  }
+
+  /** 请求 */
   async request<T = any>(config: AxiosRequestConfig): Promise<T> {
     return this.axiosInstance.request(config);
   }
 }
 
-export const http = new HttpClient({
-  baseURL: import.meta.env.VITE_BASE_API_URL as string,
-  timeout: 1000,
-});
+export default VAxios.getInstance();
