@@ -1,4 +1,4 @@
-import { http } from '@/utils/http';
+import http from '@/utils/http';
 
 export function getArticlesApi(page = 1, size = 10, orderBy = 'createdAt') {
   return http.request<{ count: number; articles: any[] }>({

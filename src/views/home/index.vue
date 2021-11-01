@@ -20,12 +20,9 @@
 <script lang="ts" setup>
   import { getArticlesApi } from '@/api/article/article';
   import { useMessage } from 'naive-ui';
-  import { testApi } from '@/utils/api';
 
   const message = useMessage();
   const { count, articles } = await getArticlesApi();
-
-  const data = await testApi();
 </script>
 
 <style scoped>

@@ -7,8 +7,6 @@ export function getToken(): string | null {
 
 /** 将token信息存入local storage */
 export function setToken(token: string) {
-  console.log('this');
-
   return localStorage.setItem(TokenKey, token);
 }
 

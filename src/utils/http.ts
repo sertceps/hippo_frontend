@@ -1,3 +1,4 @@
+import { getToken } from '@/store/localStorage/token';
 import axios, { Axios, AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 class VAxios {
@@ -14,7 +15,7 @@ class VAxios {
   static getInstance() {
     if (!this.VAxiosInstance) {
       this.VAxiosInstance = new this({
-        baseURL: import.meta.env.VITE_BASE_API as string,
+        baseURL: import.meta.env.VITE_BASE_API_URL as string,
         timeout: 10000,
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
@@ -30,7 +31,7 @@ class VAxios {
   private setRequestInterceptors() {
     // 配置
     this.axiosInstance.interceptors.request.use((config) => {
-      config.headers!['Authorization'] = 'Bearer ' + 'token';
+      config.headers!['Authorization'] = 'Bearer ' + getToken();
 
       return config;
     });
@@ -54,11 +55,11 @@ class VAxios {
 
       switch (error.response.status) {
         case 401:
-          Promise.reject('请登陆后操作');
+          return Promise.reject('请登陆后操作');
         case 403:
-          Promise.reject('权限不足');
+          return Promise.reject('权限不足');
         case 404:
-          Promise.reject('API 不存在');
+          return Promise.reject('API 不存在');
       }
 
       if (typeof error.response.data === 'string' || error.response.data instanceof String) {
