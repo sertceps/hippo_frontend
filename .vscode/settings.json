@@ -49,5 +49,16 @@
   "prettier.singleQuote": true,
   "html.format.maxPreserveNewLines": 40,
   "html.format.enable": false,
-  "cSpell.words": ["appender", "disturl", "mixins", "nprogress", "screenfull", "submenu", "vite", "vitejs", "vuex"]
+  "cSpell.words": [
+    "appender",
+    "disturl",
+    "mixins",
+    "nprogress",
+    "pinia",
+    "screenfull",
+    "submenu",
+    "vite",
+    "vitejs",
+    "vuex"
+  ]
 }

@@ -55,6 +55,7 @@
         Md5.hashStr(modelRef.value.password)
       );
       userStore.setToken(access_token);
+      userStore.setExpires(jwt_expires_in);
       message.success('登录成功');
       router.replace('/');
     } catch (err) {

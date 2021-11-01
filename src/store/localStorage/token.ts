@@ -1,16 +1,16 @@
-const TokenKey = 'token';
+const TOKEN_KEY = 'token';
 
 /** 从localStorage中获取token */
 export function getToken(): string | null {
-  return localStorage.getItem(TokenKey);
+  return localStorage.getItem(TOKEN_KEY);
 }
 
 /** 将token信息存入local storage */
 export function setToken(token: string) {
-  return localStorage.setItem(TokenKey, token);
+  return localStorage.setItem(TOKEN_KEY, token);
 }
 
 /** 清除本地存储中的token信息 */
-export function removeToken(): void {
-  return localStorage.removeItem(TokenKey);
+export function removeToken() {
+  return localStorage.removeItem(TOKEN_KEY);
 }

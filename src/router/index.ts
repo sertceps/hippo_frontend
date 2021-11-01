@@ -1,3 +1,5 @@
+import { getExpires } from '@/store/localStorage/expires';
+import { getToken } from '@/store/localStorage/token';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 // const Nav = () => import('@/components/nav/index.vue');
@@ -49,6 +51,13 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const token = getToken();
+  const expires = getExpires();
+  if (to.fullPath === '/login' && token && expires) next({ path: '/' });
+  else next();
 });
 
 export default router;

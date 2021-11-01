@@ -1,5 +1,5 @@
 import http from '@/utils/http';
-import { LoginReturn } from '../../../types/api/login';
+import { LoginReturn } from '@/types/api/login';
 
 export const loginApi = (email: string, password: string) =>
   http.request<LoginReturn>({
