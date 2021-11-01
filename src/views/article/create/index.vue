@@ -18,14 +18,14 @@
   const content = ref('');
 
   const postArticle = async () => {
-    // try {
-    const { id } = await createArticlesApi(title.value, content.value);
-    message.success('发布成功');
-    // 这里
-    router.push('/articles/' + id);
-    // } catch (err) {
-    //   message.error(err as string);
-    // }
+    try {
+      const { id } = await createArticlesApi(title.value, content.value);
+      message.success('发布成功');
+      // 这里
+      router.push('/articles/' + id);
+    } catch (err) {
+      message.error(err as string);
+    }
   };
 </script>
 <style></style>
