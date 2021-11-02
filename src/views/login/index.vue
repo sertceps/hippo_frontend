@@ -1,6 +1,6 @@
 <template>
   <div class="login-parent">
-    <n-form class="login" :model="modelRef" ref="formRef" :rules="rules">
+    <n-form ref="formRef" class="login" :model="modelRef" :rules="rules">
       <n-form-item path="email" label="邮箱">
         <n-input v-model="modelRef.email" placeholder="请输入邮箱" @keydown.enter.prevent />
       </n-form-item>
@@ -15,10 +15,10 @@
       </n-form-item>
       <div class="validate-btn">
         <n-button
-          @click="loginHandle"
           :disabled="modelRef.email === '' || modelRef.password === ''"
           round
           type="primary"
+          @click="loginHandle"
         >
           验证
         </n-button>
@@ -42,9 +42,8 @@
   });
   const message = useMessage();
 
-  const validateEmail = (rule: any, value: string) => {
-    return !/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(value) ? new Error('邮箱格式不正确') : true;
-  };
+  const validateEmail = (rule: any, value: string) =>
+    !/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(value) ? new Error('邮箱格式不正确') : true;
 
   const userStore = useUserStore();
 

@@ -10,7 +10,7 @@
             <n-avatar class="avatar" round size="large" src="src/assets/images/avatar.jpg" draggable="false" />
           </section>
           {{ item.abstract }}
-          <template #footer>j</template>
+          <template #footer> footer</template>
         </n-card>
       </template>
     </masonry-wall>

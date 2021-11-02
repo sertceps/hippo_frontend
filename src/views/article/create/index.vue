@@ -3,7 +3,7 @@
     <n-input v-model="title" type="text" placeholder="标题" />
     <n-input v-model="content" type="textarea" placeholder="内容" />
 
-    <n-button @click="postArticle" round type="primary"> 发布 </n-button>
+    <n-button round type="primary" @click="postArticle"> 发布 </n-button>
   </n-space>
 </template>
 
