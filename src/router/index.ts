@@ -54,7 +54,12 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
   // https://pinia.esm.dev/core-concepts/outside-component-usage.html#single-page-applications
+  if (to.fullPath !== '/login' && to.fullPath !== '/' && (!userStore.token || !userStore.jwt_expires_in)) {
+    // 消息提示：请先登录
+    return next({ path: '/login' });
+  }
   if (to.fullPath === '/login' && userStore.token && userStore.jwt_expires_in) return next({ path: '/' });
+
   return next();
 });
 
