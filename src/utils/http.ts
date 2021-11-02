@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useUserStore } from '@/store/index';
 
 class VAxios {
@@ -33,7 +33,7 @@ class VAxios {
   /** 设置请求拦截器 */
   private setRequestInterceptors() {
     // 配置
-    this.axiosInstance.interceptors.request.use((config) => {
+    this.axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
       const customConfig = config;
       customConfig.headers!.Authorization = `Bearer ${this.userStore.token}`;
 
@@ -41,23 +41,19 @@ class VAxios {
     });
 
     // 错误处理
-    this.axiosInstance.interceptors.request.use(undefined, (error) => {
-      return Promise.reject(error);
-    });
+    this.axiosInstance.interceptors.request.use(undefined, (error) => Promise.reject(error));
   }
 
   /** 设置响应拦截器 */
   private setResponseInterceptors() {
     // 配置
-    this.axiosInstance.interceptors.response.use((response) => {
-      return response.data;
-    });
+    this.axiosInstance.interceptors.response.use((response: AxiosResponse) => response.data);
 
     // 错误处理
-    this.axiosInstance.interceptors.response.use(undefined, (error) => {
-      if (!error.response) return Promise.reject(error.message);
+    this.axiosInstance.interceptors.response.use(undefined, (error: AxiosError | Error) => {
+      if (!axios.isAxiosError(error)) return Promise.reject(error.message);
 
-      switch (error.response.status) {
+      switch (error.response?.status) {
         case 401:
           return Promise.reject(new Error('请登陆后操作'));
         case 403:
@@ -65,7 +61,7 @@ class VAxios {
         case 404:
           return Promise.reject(new Error('API 不存在'));
         default:
-          return Promise.reject(error.response);
+          return Promise.reject(error.response?.data.message ?? error.response?.data.error);
       }
     });
   }
