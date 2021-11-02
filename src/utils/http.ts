@@ -1,10 +1,11 @@
-import { getToken } from '@/store/localStorage/token';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { useUserStore } from '@/store/index';
-import axios, { Axios, AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 class VAxios {
   private axiosInstance: AxiosInstance;
+
   private static VAxiosInstance: VAxios;
+
   private userStore = useUserStore();
 
   private constructor(config: AxiosRequestConfig) {
@@ -13,7 +14,7 @@ class VAxios {
     this.setResponseInterceptors();
   }
 
-  /** 创建实例*/
+  /** 创建实例 */
   static getInstance() {
     if (!this.VAxiosInstance) {
       this.VAxiosInstance = new this({
@@ -33,10 +34,10 @@ class VAxios {
   private setRequestInterceptors() {
     // 配置
     this.axiosInstance.interceptors.request.use((config) => {
-      config.headers!['Authorization'] = 'Bearer ' + this.userStore.token;
-      console.log(this.userStore);
+      const customConfig = config;
+      customConfig.headers!.Authorization = `Bearer ${this.userStore.token}`;
 
-      return config;
+      return customConfig;
     });
 
     // 错误处理
@@ -58,18 +59,14 @@ class VAxios {
 
       switch (error.response.status) {
         case 401:
-          return Promise.reject('请登陆后操作');
+          return Promise.reject(new Error('请登陆后操作'));
         case 403:
-          return Promise.reject('权限不足');
+          return Promise.reject(new Error('权限不足'));
         case 404:
-          return Promise.reject('API 不存在');
+          return Promise.reject(new Error('API 不存在'));
+        default:
+          return Promise.reject(error.response);
       }
-
-      if (typeof error.response.data === 'string' || error.response.data instanceof String) {
-        return Promise.reject(error.response.data);
-      } else if ('message' in error.response.data) return Promise.reject(error.response.data.message);
-
-      return Promise.reject(error);
     });
   }
 

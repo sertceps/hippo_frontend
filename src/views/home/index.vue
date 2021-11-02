@@ -1,7 +1,7 @@
 <template>
   <main>
     <masonry-wall :items="articles" :column-width="300" :padding="16">
-      <template #default="{ item, index }">
+      <template #default="{ item, _ }">
         <n-card :title="item.title" hoverable>
           <template #cover>
             <img class="cover" src="src/assets/images/article-background.jpeg" draggable="false" />
@@ -18,11 +18,11 @@
 </template>
 
 <script lang="ts" setup>
+  // import { useMessage } from 'naive-ui';
   import { getArticlesApi } from '@/api/article/article';
-  import { useMessage } from 'naive-ui';
 
-  const message = useMessage();
-  const { count, articles } = await getArticlesApi();
+  // const message = useMessage();
+  const { articles } = await getArticlesApi();
 </script>
 
 <style scoped>

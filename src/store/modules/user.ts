@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { getToken, setToken } from '../localStorage/token';
 import { getExpires, setExpires } from '../localStorage/expires';
 
-export const useStore = defineStore('users', {
+const useStore = defineStore('users', {
   state: () => ({
     token: getToken() || '',
     // 为什么要用 state 统一管理
@@ -22,3 +22,5 @@ export const useStore = defineStore('users', {
     },
   },
 });
+
+export default useStore;

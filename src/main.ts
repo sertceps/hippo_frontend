@@ -1,6 +1,4 @@
 import { createApp } from 'vue';
-import App from './App.vue';
-import router from './router/index';
 import {
   create,
   NButton,
@@ -19,6 +17,8 @@ import {
 } from 'naive-ui';
 import { createPinia } from 'pinia';
 import MasonryWall from '@yeger/vue-masonry-wall';
+import router from './router/index';
+import App from './App.vue';
 
 const naive = create({
   components: [
@@ -39,8 +39,8 @@ const naive = create({
 });
 
 const app = createApp(App);
-app.use(router);
-app.use(naive);
 app.use(createPinia());
+app.use(naive);
 app.use(MasonryWall);
+app.use(router);
 app.mount('#app');

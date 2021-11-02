@@ -1,3 +1,3 @@
-import { useStore as useUserStore } from './modules/user';
+import useUserStore from './modules/user';
 
 export { useUserStore };

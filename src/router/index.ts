@@ -1,8 +1,7 @@
-import { getExpires } from '@/store/localStorage/expires';
-import { getToken } from '@/store/localStorage/token';
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+// import { getExpires } from '@/store/localStorage/expires';
+// import { getToken } from '@/store/localStorage/token';
 import { useUserStore } from '@/store';
-const userStore = useUserStore();
 
 const Layout = () => import('@/layout/index.vue');
 
@@ -55,6 +54,8 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  const userStore = useUserStore();
+  // https://pinia.esm.dev/core-concepts/outside-component-usage.html#single-page-applications
   if (to.fullPath === '/login' && userStore.token && userStore.jwt_expires_in) return next({ path: '/' });
   return next();
 });

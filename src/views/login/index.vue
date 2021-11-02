@@ -2,11 +2,11 @@
   <div class="login-parent">
     <n-form class="login" :model="modelRef" ref="formRef" :rules="rules">
       <n-form-item path="email" label="邮箱">
-        <n-input v-model:value="modelRef.email" placeholder="请输入邮箱" @keydown.enter.prevent />
+        <n-input v-model="modelRef.email" placeholder="请输入邮箱" @keydown.enter.prevent />
       </n-form-item>
       <n-form-item path="password" label="密码">
         <n-input
-          v-model:value="modelRef.password"
+          v-model="modelRef.password"
           type="password"
           placeholder="请输入密码"
           @keydown.enter.prevent
@@ -29,9 +29,9 @@
 
 <script lang="ts" setup>
   import { Md5 } from 'ts-md5';
-  import { computed, ref } from 'vue';
-  import { loginApi } from '@/api/login/user';
+  import { ref } from 'vue';
   import { useMessage } from 'naive-ui';
+  import { loginApi } from '@/api/login/user';
   import router from '@/router';
   import { useUserStore } from '@/store';
 
@@ -50,12 +50,12 @@
 
   const loginHandle = async () => {
     try {
-      const { access_token, jwt_expires_in } = await loginApi(
+      const { access_token: accessToken, jwt_expires_in: jwtExpiresIn } = await loginApi(
         modelRef.value.email,
         Md5.hashStr(modelRef.value.password)
       );
-      userStore.setToken(access_token);
-      userStore.setExpires(jwt_expires_in);
+      userStore.setToken(accessToken);
+      userStore.setExpires(jwtExpiresIn);
       message.success('登录成功');
       router.replace('/');
     } catch (err) {

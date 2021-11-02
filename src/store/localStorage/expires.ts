@@ -2,7 +2,7 @@ const EXPIRES_KEY = 'expires_key';
 
 /** 从 localStorage 获取过期时间 */
 export function getExpires(): number {
-  return parseInt(localStorage.getItem(EXPIRES_KEY) ?? '0');
+  return parseInt(localStorage.getItem(EXPIRES_KEY) ?? '0', 10);
 }
 
 /** 将过期时间存入 local storage */

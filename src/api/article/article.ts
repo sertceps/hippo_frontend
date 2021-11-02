@@ -19,7 +19,7 @@ export function getArticlesApi(page = 1, size = 10, orderBy = 'createdAt') {
  */
 export function getArticleApi(id: string) {
   return http.request<Article>({
-    url: 'articles/' + id,
+    url: `articles/${id}`,
     method: 'GET',
   });
 }
