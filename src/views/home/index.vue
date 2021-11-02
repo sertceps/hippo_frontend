@@ -1,21 +1,21 @@
 <template>
   <main>
-    <masonry-wall :items="articles" :column-width="300" :gap="16">
+    <MasonryWall :items="articles" :column-width="300" :gap="16">
       <template #default="{ item, _ }">
         <router-link :to="'/articles/show/' + item._id">
-          <n-card :title="item.title" hoverable>
+          <NCard :title="item.title" hoverable>
             <template #cover>
               <img class="cover" :src="articleBackgroundImageUrl" draggable="false" />
             </template>
             <section>
-              <n-avatar class="avatar" round size="large" :src="avatarImageUrl" draggable="false" />
+              <NAvatar class="avatar" round size="large" :src="avatarImageUrl" draggable="false" />
             </section>
             {{ item.abstract }}
             <template #footer> footer</template>
-          </n-card>
+          </NCard>
         </router-link>
       </template>
-    </masonry-wall>
+    </MasonryWall>
   </main>
 </template>
 

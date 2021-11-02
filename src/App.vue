@@ -1,7 +1,7 @@
 <template>
-  <n-message-provider>
+  <NMessageProvider>
     <router-view></router-view>
-  </n-message-provider>
+  </NMessageProvider>
 </template>
 
 <script lang="ts" setup></script>

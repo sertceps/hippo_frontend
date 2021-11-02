@@ -1,29 +1,29 @@
 <template>
   <div class="login-parent">
-    <n-form ref="formRef" class="login" :model="modelRef" :rules="rules">
-      <n-form-item path="email" label="邮箱">
-        <n-input v-model="modelRef.email" placeholder="请输入邮箱" @keydown.enter.prevent />
-      </n-form-item>
-      <n-form-item path="password" label="密码">
-        <n-input
-          v-model="modelRef.password"
+    <NForm ref="formRef" class="login" :model="modelRef" :rules="rules">
+      <NFormItem path="email" label="邮箱">
+        <NInput v-model:value="modelRef.email" placeholder="请输入邮箱" @keydown.enter.prevent />
+      </NFormItem>
+      <NFormItem path="password" label="密码">
+        <NInput
+          v-model:value="modelRef.password"
           type="password"
           placeholder="请输入密码"
           @keydown.enter.prevent
           @keyup.enter="loginHandle"
         />
-      </n-form-item>
+      </NFormItem>
       <div class="validate-btn">
-        <n-button
+        <NButton
           :disabled="modelRef.email === '' || modelRef.password === ''"
           round
           type="primary"
           @click="loginHandle"
         >
           验证
-        </n-button>
+        </NButton>
       </div>
-    </n-form>
+    </NForm>
   </div>
 </template>
 

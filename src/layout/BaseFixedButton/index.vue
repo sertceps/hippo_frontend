@@ -1,13 +1,13 @@
 <template>
-  <n-dropdown trigger="hover" :options="options">
-    <n-button circle color="#fff" class="float-button" @click="router.push('/articles/create')">
+  <NDropdown trigger="hover" :options="options">
+    <NButton circle color="#fff" class="float-button" @click="router.push('/articles/create')">
       <IconConfigProvider color="green" size="32">
         <Icon>
           <EditOutlined></EditOutlined>
         </Icon>
       </IconConfigProvider>
-    </n-button>
-  </n-dropdown>
+    </NButton>
+  </NDropdown>
 </template>
 
 <script setup lang="ts">

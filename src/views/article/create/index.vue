@@ -1,8 +1,8 @@
 <template>
   <main>
-    <n-space vertical class="article">
-      <n-input v-model:value="title" type="text" placeholder="标题" />
-      <n-input
+    <NSpace vertical class="article">
+      <NInput v-model:value="title" type="text" placeholder="标题" />
+      <NInput
         v-model:value="content"
         type="textarea"
         placeholder="内容"
@@ -16,9 +16,9 @@
       <!-- https://juejin.cn/post/6889988292482662413 -->
       <!-- https://v3.cn.vuejs.org/guide/component-custom-events.html#v-model-%E5%8F%82%E6%95%B0 -->
       <div class="button-container">
-        <n-button round type="primary" @click="postArticle"> 发布 </n-button>
+        <NButton round type="primary" @click="postArticle"> 发布 </NButton>
       </div>
-    </n-space>
+    </NSpace>
   </main>
 </template>
 

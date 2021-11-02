@@ -1,9 +1,13 @@
 <template>
-  <nav> </nav>
+  <nav></nav>
   <div class="placeholder"></div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts">
+  export default {
+    name: 'BaseFixedNav',
+  };
+</script>
 
 <style scoped>
   html,

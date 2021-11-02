@@ -1,11 +1,11 @@
 <template>
-  <my-nav></my-nav>
+  <BaseFixedNav></BaseFixedNav>
   <suspense>
     <router-view></router-view>
   </suspense>
-  <float-button></float-button>
+  <BaseFixedButton></BaseFixedButton>
 </template>
 <script lang="ts" setup>
-  import MyNav from './myNav/index.vue';
-  import FloatButton from './floatButton/index.vue';
+  import BaseFixedNav from './BaseFixedNav/index.vue';
+  import BaseFixedButton from './BaseFixedButton/index.vue';
 </script>
