@@ -1,6 +1,4 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-// import { getExpires } from '@/store/localStorage/expires';
-// import { getToken } from '@/store/localStorage/token';
 import { useUserStore } from '@/store';
 
 const Layout = () => import('@/layout/index.vue');
