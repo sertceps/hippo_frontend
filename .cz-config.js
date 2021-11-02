@@ -1,0 +1,1 @@
+skipQuestions: ['body', 'footer'];
