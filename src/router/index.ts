@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/article/create/index.vue'),
       },
       {
-        path: ':id',
+        path: 'show/:id',
         component: () => import('@/views/article/show/index.vue'),
       },
     ],

@@ -24,7 +24,7 @@
       const { id } = await createArticlesApi(title.value, content.value);
       message.success('发布成功');
       // 这里
-      router.push(`/articles/${id}`);
+      router.push(`/articles/show/${id}`);
     } catch (err) {
       message.error(err as string);
     }

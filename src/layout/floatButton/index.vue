@@ -1,6 +1,6 @@
 <template>
   <n-dropdown trigger="hover" :options="options">
-    <n-button circle color="#fff" class="float-button">
+    <n-button circle color="#fff" class="float-button" @click="router.push('/articles/create')">
       <IconConfigProvider color="green" size="32">
         <Icon>
           <EditOutlined></EditOutlined>
@@ -13,6 +13,7 @@
 <script setup lang="ts">
   import { Icon, IconConfigProvider } from '@vicons/utils';
   import { EditOutlined } from '@vicons/antd';
+  import router from '@/router';
 
   const options = [
     {

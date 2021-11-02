@@ -1,8 +1,8 @@
 <template>
   <main>
-    <masonry-wall :items="articles" :column-width="300" :padding="16">
+    <masonry-wall :items="articles" :column-width="300" :gap="16">
       <template #default="{ item, _ }">
-        <router-link :to="'/articles/' + item._id">
+        <router-link :to="'/articles/show/' + item._id">
           <n-card :title="item.title" hoverable>
             <template #cover>
               <img class="cover" :src="articleBackgroundImageUrl" draggable="false" />
@@ -30,6 +30,9 @@
 </script>
 
 <style scoped>
+  a {
+    text-decoration: none;
+  }
   main {
     padding: 30px;
   }
