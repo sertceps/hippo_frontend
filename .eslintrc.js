@@ -12,6 +12,23 @@ module.exports = {
   plugins: ['vue', '@typescript-eslint'],
   rules: {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'no-console': 'error',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+  },
+
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
   },
 };
 
