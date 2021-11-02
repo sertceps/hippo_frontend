@@ -2,16 +2,18 @@
   <main>
     <masonry-wall :items="articles" :column-width="300" :padding="16">
       <template #default="{ item, _ }">
-        <n-card :title="item.title" hoverable>
-          <template #cover>
-            <img class="cover" src="src/assets/images/article-background.jpeg" draggable="false" />
-          </template>
-          <section>
-            <n-avatar class="avatar" round size="large" src="src/assets/images/avatar.jpg" draggable="false" />
-          </section>
-          {{ item.abstract }}
-          <template #footer> footer</template>
-        </n-card>
+        <router-link :to="'/articles/' + item._id">
+          <n-card :title="item.title" hoverable>
+            <template #cover>
+              <img class="cover" src="src/assets/images/article-background.jpeg" draggable="false" />
+            </template>
+            <section>
+              <n-avatar class="avatar" round size="large" src="src/assets/images/avatar.jpg" draggable="false" />
+            </section>
+            {{ item.abstract }}
+            <template #footer> footer</template>
+          </n-card>
+        </router-link>
       </template>
     </masonry-wall>
   </main>

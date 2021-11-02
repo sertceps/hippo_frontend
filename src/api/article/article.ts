@@ -2,7 +2,7 @@ import { Article } from '@/types/api/articles';
 import http from '@/utils/http';
 
 export function getArticlesApi(page = 1, size = 10, orderBy = 'createdAt') {
-  return http.request<{ count: number; articles: any[] }>({
+  return http.request<{ count: number; articles: Article[] }>({
     url: 'articles',
     method: 'GET',
     params: {

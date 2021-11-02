@@ -1,42 +1,44 @@
-interface Website {
-  github: string;
+// interface Website {
+//   github: string;
 
-  twitter: string;
+//   twitter: string;
 
-  zhihu: string;
+//   zhihu: string;
 
-  weibo: string;
+//   weibo: string;
 
-  gitee: string;
+//   gitee: string;
 
-  personal_websites: string[];
-}
+//   personal_websites: string[];
+// }
 
-interface User {
-  user_name: string;
+// interface User {
+//   user_name: string;
 
-  email: string;
+//   email: string;
 
-  password: string;
+//   password: string;
 
-  role: string;
+//   role: string;
 
-  birth: Date;
+//   birth: Date;
 
-  gender: string;
+//   gender: string;
 
-  background: string;
+//   background: string;
 
-  avatar: string;
+//   avatar: string;
 
-  websites: Website;
+//   websites: Website;
 
-  description: string;
+//   description: string;
 
-  deleted: boolean;
-}
+//   deleted: boolean;
+// }
 
 export interface Article {
+  _id: string;
+
   title: string;
 
   abstract: string;
