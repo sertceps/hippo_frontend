@@ -1,9 +1,11 @@
 import { getToken } from '@/store/localStorage/token';
+import { useUserStore } from '@/store/index';
 import axios, { Axios, AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 class VAxios {
   private axiosInstance: AxiosInstance;
   private static VAxiosInstance: VAxios;
+  private userStore = useUserStore();
 
   private constructor(config: AxiosRequestConfig) {
     this.axiosInstance = axios.create(config);
@@ -31,7 +33,8 @@ class VAxios {
   private setRequestInterceptors() {
     // 配置
     this.axiosInstance.interceptors.request.use((config) => {
-      config.headers!['Authorization'] = 'Bearer ' + getToken();
+      config.headers!['Authorization'] = 'Bearer ' + this.userStore.token;
+      console.log(this.userStore);
 
       return config;
     });

@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia';
-import { setToken } from '../localStorage/token';
-import { setExpires } from '../localStorage/expires';
+import { getToken, setToken } from '../localStorage/token';
+import { getExpires, setExpires } from '../localStorage/expires';
 
 export const useStore = defineStore('users', {
   state: () => ({
-    token: '',
-    jwt_expires_in: 0,
+    token: getToken() || '',
+    // 为什么要用 state 统一管理
+    jwt_expires_in: getExpires() || 0,
   }),
 
   getters: {},
