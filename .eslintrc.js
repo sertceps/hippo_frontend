@@ -3,8 +3,9 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['airbnb-base', 'plugin:vue/vue3-recommended', 'prettier'],
+  extends: ['plugin:vue/base', 'plugin:vue/vue3-essential', 'plugin:vue/vue3-recommended', 'prettier'],
   // https://eslint.vuejs.org/user-guide/#usage
+  parser: 'vue-eslint-parser',
   parserOptions: {
     ecmaVersion: 12,
     parser: '@typescript-eslint/parser',
@@ -12,23 +13,11 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
-    'import/prefer-default-export': 'off',
     'no-console': 'error',
     'vue/no-unused-vars': [
       'error',
       {
         ignorePattern: '^_',
-      },
-    ],
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
       },
     ],
   },
@@ -39,5 +28,3 @@ module.exports = {
     },
   },
 };
-
-//
