@@ -9,3 +9,8 @@
   import BaseFixedNav from './BaseFixedNav/index.vue';
   import BaseFixedButton from './BaseFixedButton/index.vue';
 </script>
+<script lang="ts">
+  export default {
+    name: 'BaseLayout',
+  };
+</script>

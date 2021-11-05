@@ -11,5 +11,9 @@
   const articleId = route.params.id;
   const res = await getArticleApi(articleId as string);
 </script>
-
+<script lang="ts">
+  export default {
+    name: 'ArticleShow',
+  };
+</script>
 <style scoped></style>

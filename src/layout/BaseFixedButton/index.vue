@@ -36,6 +36,12 @@
   ];
 </script>
 
+<script lang="ts">
+  export default {
+    name: 'BaseFixedButton',
+  };
+</script>
+
 <style scped>
   .float-button {
     width: 48px;

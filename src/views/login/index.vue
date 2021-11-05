@@ -71,6 +71,12 @@
   };
 </script>
 
+<script lang="ts">
+  export default {
+    name: 'TheLogin',
+  };
+</script>
+
 <style scoped>
   .login-parent {
     display: grid;

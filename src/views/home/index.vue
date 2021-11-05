@@ -29,6 +29,12 @@
   const { articles } = await getArticlesApi();
 </script>
 
+<script lang="ts">
+  export default {
+    name: 'BaseFixedButton',
+  };
+</script>
+
 <style scoped>
   a {
     text-decoration: none;
