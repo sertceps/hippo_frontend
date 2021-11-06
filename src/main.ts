@@ -1,47 +1,14 @@
 import { createApp } from 'vue';
-import {
-  create,
-  NButton,
-  NCol,
-  NForm,
-  NFormItem,
-  NInput,
-  NMessageProvider,
-  NRow,
-  NCard,
-  NAvatar,
-  NBackTop,
-  NDropdown,
-  NMenu,
-  NSpace,
-  useMessage,
-} from 'naive-ui';
 import { createPinia } from 'pinia';
+import { setupNaive } from './plugins/naiveui';
 import MasonryWall from '@yeger/vue-masonry-wall';
 import router from './router/index';
 import App from './App.vue';
 
-const naive = create({
-  components: [
-    NMessageProvider,
-    NButton,
-    NForm,
-    NFormItem,
-    NInput,
-    NRow,
-    NCol,
-    NCard,
-    NAvatar,
-    NBackTop,
-    NDropdown,
-    NMenu,
-    NSpace,
-  ],
-});
-
 const app = createApp(App);
 app.use(createPinia());
-app.use(naive);
+/** 全局引入常用 naive ui组件 */
+setupNaive(app);
 app.use(MasonryWall);
 app.use(router);
 app.mount('#app');
