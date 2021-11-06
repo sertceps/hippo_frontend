@@ -10,7 +10,11 @@
   import NavMenu from './components/NavMenu.vue';
   import NavToolbar from './components/NavToolbar.vue';
 </script>
-
+<script lang="ts">
+  export default {
+    name: 'BaseFixedNav',
+  };
+</script>
 <style scoped>
   html,
   body,

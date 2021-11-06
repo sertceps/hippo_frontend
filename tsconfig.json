@@ -6,6 +6,7 @@
     },
     "target": "esnext",
     "useDefineForClassFields": true,
+    "experimentalDecorators": true,
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,

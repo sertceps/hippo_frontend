@@ -52,14 +52,15 @@ class VAxios {
     // 错误处理
     this.axiosInstance.interceptors.response.use(undefined, (error: AxiosError | Error) => {
       if (!axios.isAxiosError(error)) return Promise.reject(error.message);
+      if (!error.response) return Promise.reject(error.message);
 
-      switch (error.response?.status) {
+      switch (error.response.status) {
         case 401:
-          return Promise.reject(new Error('请登陆后操作'));
+          return Promise.reject('请登陆后操作');
         case 403:
-          return Promise.reject(new Error('权限不足'));
+          return Promise.reject('权限不足');
         case 404:
-          return Promise.reject(new Error('API 不存在'));
+          return Promise.reject('API 不存在');
         default:
           return Promise.reject(error.response?.data.message ?? error.response?.data.error);
       }

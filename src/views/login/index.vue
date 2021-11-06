@@ -48,18 +48,14 @@
   const userStore = useUserStore();
 
   const loginHandle = async () => {
-    try {
-      const { access_token: accessToken, jwt_expires_in: jwtExpiresIn } = await loginApi(
-        modelRef.value.email,
-        Md5.hashStr(modelRef.value.password)
-      );
-      userStore.setToken(accessToken);
-      userStore.setExpires(jwtExpiresIn);
-      message.success('登录成功');
-      router.replace('/');
-    } catch (err) {
-      message.error(err as string);
-    }
+    const { access_token: accessToken, jwt_expires_in: jwtExpiresIn } = await loginApi(
+      modelRef.value.email,
+      Md5.hashStr(modelRef.value.password)
+    );
+    userStore.setToken(accessToken);
+    userStore.setExpires(jwtExpiresIn);
+    message.success('登录成功');
+    router.replace('/');
   };
 
   const rules = {
@@ -68,6 +64,12 @@
       { required: true, message: '请输入邮箱', trigger: ['blur'] },
     ],
     password: [{ required: true, message: '请输入密码', trigger: ['blur'] }],
+  };
+</script>
+
+<script lang="ts">
+  export default {
+    name: 'TheLogin',
   };
 </script>
 

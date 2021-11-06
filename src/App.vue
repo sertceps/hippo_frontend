@@ -1,10 +1,12 @@
 <template>
-  <NMessageProvider>
+  <AppProvider>
     <router-view></router-view>
-  </NMessageProvider>
+  </AppProvider>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  import AppProvider from '@/components/AppProvider/index.vue';
+</script>
 
 <style>
   html,

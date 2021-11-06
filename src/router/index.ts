@@ -42,7 +42,7 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
-  { path: '/404', name: 'NotFound', component: () => import('@/views/404/index.vue') },
+  { path: '/404', name: 'ExceptionNotFound', component: () => import('@/views/exception/404/index.vue') },
   { path: '/:w+', redirect: '/404' },
 ];
 
