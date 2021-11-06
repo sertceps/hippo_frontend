@@ -44,3 +44,14 @@ app.use(naive);
 app.use(MasonryWall);
 app.use(router);
 app.mount('#app');
+
+/** 捕获与 vue 无关的 JS 错误 */
+window.onerror = function (event) {
+  console.error(event);
+};
+
+/** 捕获异未处理常错误 */
+window.addEventListener('unhandledrejection', function (event: PromiseRejectionEvent) {
+  console.error(event.reason);
+  event.preventDefault();
+});

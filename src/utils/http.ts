@@ -1,6 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { useUserStore } from '@/store/index';
-import { catchRequestError } from './error-catch.decorator';
 
 class VAxios {
   private axiosInstance: AxiosInstance;
@@ -69,7 +68,6 @@ class VAxios {
   }
 
   /** 请求 */
-  @catchRequestError()
   async request<T = any>(config: AxiosRequestConfig): Promise<T> {
     return this.axiosInstance.request(config);
   }
