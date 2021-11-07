@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { ref, h, resolveComponent } from 'vue';
 
   const activeKey = ref(null);
   const menuOptions = [

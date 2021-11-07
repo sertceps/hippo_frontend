@@ -3,7 +3,13 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:vue/base', 'plugin:vue/vue3-essential', 'plugin:vue/vue3-recommended', 'prettier'],
+  extends: [
+    'plugin:vue/base',
+    'plugin:vue/vue3-essential',
+    'plugin:vue/vue3-strongly-recommended',
+    'plugin:vue/vue3-recommended',
+    'prettier',
+  ],
   // https://eslint.vuejs.org/user-guide/#usage
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -14,17 +20,6 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   rules: {
     'no-console': ['error', { allow: ['warn', 'error'] }],
-    'vue/no-unused-vars': [
-      'error',
-      {
-        ignorePattern: '^_',
-      },
-    ],
-  },
-
-  settings: {
-    'import/resolver': {
-      typescript: {},
-    },
+    'vue/no-unused-vars': ['error', { ignorePattern: '^_' }],
   },
 };
