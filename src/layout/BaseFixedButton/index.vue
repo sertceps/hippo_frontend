@@ -25,14 +25,6 @@
       label: '布朗酒店，伦敦',
       key: "brown's hotel, london",
     },
-    {
-      label: '亚特兰蒂斯巴哈马',
-      key: 'atlantis nahamas, nassau',
-    },
-    {
-      label: '比佛利山庄酒店',
-      key: 'the beverly hills hotel',
-    },
   ];
 </script>
 
@@ -42,7 +34,7 @@
   };
 </script>
 
-<style scped>
+<style scoped>
   .float-button {
     width: 48px;
     height: 48px;

@@ -53,17 +53,26 @@
   "html.format.maxPreserveNewLines": 40,
   "html.format.enable": false,
   "cSpell.words": [
+    "antd",
     "appender",
+    "autosize",
     "disturl",
+    "draggable",
+    "hoverable",
+    "keydown",
+    "keyup",
     "mixins",
     "naiveui",
     "nprogress",
     "pinia",
+    "rgba",
     "screenfull",
     "submenu",
     "vicons",
     "vite",
     "vitejs",
-    "vuex"
-  ]
+    "vuex",
+    "yeger"
+  ],
+  "cSpell.enableFiletypes": ["css", "vue", "typescript"]
 }
