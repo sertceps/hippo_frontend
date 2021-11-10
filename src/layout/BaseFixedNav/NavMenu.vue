@@ -5,14 +5,14 @@
 <script setup lang="ts">
   import { ref, h, resolveComponent } from 'vue';
 
-  const activeKey = ref(null);
+  const activeKey = ref('home-page');
   const menuOptions = [
     {
-      label: '首页',
+      label: () => h(resolveComponent('router-link'), { to: '/' }, () => '首页'),
       key: 'home-page',
     },
     {
-      label: '喝点酒',
+      label: () => h(resolveComponent('router-link'), { to: '/articles/create' }, () => '喝点酒'),
       key: 'beverage',
     },
   ];

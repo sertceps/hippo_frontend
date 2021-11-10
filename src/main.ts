@@ -20,6 +20,6 @@ app.mount('#app');
 
 /** 捕获异未处理常错误 */
 window.addEventListener('unhandledrejection', function (event: PromiseRejectionEvent) {
-  window.$message.error(event.reason);
+  window.$message.error(event.reason.message ?? event.reason);
   event.preventDefault();
 });

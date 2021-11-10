@@ -1,7 +1,7 @@
 <template>
-  <NDropdown trigger="hover" :options="options">
+  <NDropdown trigger="hover" :options="options" :show-arrow="true">
     <NButton circle color="#fff" class="float-button" @click="router.push('/articles/create')">
-      <IconConfigProvider color="green" size="32">
+      <IconConfigProvider color="green" size="26">
         <Icon>
           <EditOutlined></EditOutlined>
         </Icon>
@@ -17,13 +17,8 @@
 
   const options = [
     {
-      label: '滨海湾金沙，新加坡',
-      key: 'marina bay sands',
-      disabled: true,
-    },
-    {
-      label: '布朗酒店，伦敦',
-      key: "brown's hotel, london",
+      label: '回到顶部',
+      key: 'back to top',
     },
   ];
 </script>
@@ -36,13 +31,13 @@
 
 <style scoped>
   .float-button {
-    width: 48px;
-    height: 48px;
+    width: 42px;
+    height: 42px;
     position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    bottom: 60px;
+    bottom: 40px;
     right: 60px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 8px 0px;
   }
