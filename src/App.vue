@@ -13,6 +13,7 @@
   body,
   #app {
     height: 100%;
+    min-width: 390px;
     margin: 0;
     padding: 0;
   }

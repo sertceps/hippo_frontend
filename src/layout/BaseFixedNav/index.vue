@@ -7,8 +7,8 @@
 </template>
 
 <script lang="ts" setup>
-  import NavMenu from './components/NavMenu.vue';
-  import NavToolbar from './components/NavToolbar.vue';
+  import NavMenu from './/NavMenu.vue';
+  import NavToolbar from './NavToolbar.vue';
 </script>
 <script lang="ts">
   export default {
@@ -36,9 +36,9 @@
     z-index: 999;
   }
 
-  .nav-toolbar {
+  /* .nav-toolbar {
     margin-left: auto;
-  }
+  } */
   .placeholder {
     height: 64px;
   }

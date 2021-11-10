@@ -14,12 +14,12 @@ app.use(router);
 app.mount('#app');
 
 /** 捕获与 vue 无关的 JS 错误 */
-window.addEventListener('error', function (event: ErrorEvent) {
-  window.$message.error(event.message);
-});
+// window.addEventListener('error', function (event: ErrorEvent) {
+//   window.$message.error(event.message);
+// });
 
 /** 捕获异未处理常错误 */
 window.addEventListener('unhandledrejection', function (event: PromiseRejectionEvent) {
-  window.$message.error(event.reason);
+  window.$message.error(event.reason.message ?? event.reason);
   event.preventDefault();
 });

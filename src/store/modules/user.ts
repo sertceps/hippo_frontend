@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { getToken, setToken } from '../localStorage/token';
+import { getToken, setToken, removeToken } from '../localStorage/token';
 import { getExpires, setExpires } from '../localStorage/expires';
 
 const useStore = defineStore('users', {
@@ -19,6 +19,10 @@ const useStore = defineStore('users', {
     setExpires(expires: number) {
       this.jwt_expires_in = expires;
       setExpires(expires);
+    },
+    removeToken() {
+      this.token = '';
+      removeToken();
     },
   },
 });
