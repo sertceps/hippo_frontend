@@ -51,15 +51,18 @@ const router = createRouter({
   routes,
 });
 
+const WHITE_LIST = ['/', '/login'];
+const BLACK_LIST = ['/login', '/register'];
+
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore();
   const { $message: Message } = window;
   // https://pinia.esm.dev/core-concepts/outside-component-usage.html#single-page-applications
-  if (to.fullPath !== '/login' && to.fullPath !== '/' && (!userStore.token || !userStore.jwt_expires_in)) {
+  if (!WHITE_LIST.includes(to.path) && (!userStore.token || !userStore.jwt_expires_in)) {
     Message.info('请先登录');
-    return next({ path: '/login' });
+    return next(`/login?redirect=${to.fullPath}`);
   }
-  if (to.fullPath === '/login' && userStore.token && userStore.jwt_expires_in) return next({ path: '/' });
+  if (BLACK_LIST.includes(to.path) && userStore.token && userStore.jwt_expires_in) return next({ path: from.fullPath });
 
   return next();
 });

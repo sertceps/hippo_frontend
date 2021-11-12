@@ -11,9 +11,9 @@
     "*.{vue,js,ts}": "eslint --fix"
   },
   "dependencies": {
-    "@yeger/vue-masonry-wall": "^3.0.4",
+    "@yeger/vue-masonry-wall": "^3.0.7",
     "axios": "^0.24.0",
-    "pinia": "^2.0.2",
+    "pinia": "^2.0.3",
     "ts-md5": "^1.2.9",
     "vue": "^3.2.20",
     "vue-eslint-parser": "^8.0.1",
@@ -22,8 +22,8 @@
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",
     "@commitlint/config-conventional": "^14.1.0",
-    "@typescript-eslint/eslint-plugin": "^5.3.0",
-    "@typescript-eslint/parser": "^5.3.0",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
     "@vicons/antd": "^0.11.0",
     "@vicons/utils": "^0.1.4",
     "@vitejs/plugin-vue": "^1.9.4",
@@ -33,15 +33,15 @@
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.5.0",
-    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-vue": "^8.0.3",
     "husky": "^7.0.4",
     "lint-staged": "^11.2.6",
     "naive-ui": "^2.20.2",
     "prettier": "^2.4.1",
     "typescript": "^4.4.4",
-    "vite": "^2.6.13",
-    "vue-tsc": "^0.28.10"
+    "vite": "^2.6.14",
+    "vue-tsc": "^0.29.3"
   },
   "config": {
     "commitizen": {
