@@ -3,6 +3,7 @@ import { getToken, setToken, removeToken } from '../localStorage/token';
 import { getExpires, setExpires } from '../localStorage/expires';
 
 const useStore = defineStore('users', {
+  /** vueuse useLocalStorage 怎么实现的 */
   state: () => ({
     token: getToken() || '',
     // 为什么要用 state 统一管理

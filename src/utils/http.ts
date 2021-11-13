@@ -15,16 +15,9 @@ class VAxios {
   }
 
   /** 创建实例 */
-  static getInstance() {
+  static getInstance(config: AxiosRequestConfig) {
     if (!this.VAxiosInstance) {
-      this.VAxiosInstance = new this({
-        baseURL: import.meta.env.VITE_BASE_API_URL as string,
-        timeout: 10000,
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-          Accept: '*/*',
-        },
-      });
+      this.VAxiosInstance = new this(config);
     }
 
     return this.VAxiosInstance;
@@ -73,4 +66,11 @@ class VAxios {
   }
 }
 
-export default VAxios.getInstance();
+export default VAxios.getInstance({
+  baseURL: import.meta.env.VITE_BASE_API_URL as string,
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json; charset=utf-8',
+    Accept: '*/*',
+  },
+});

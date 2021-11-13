@@ -12,7 +12,7 @@
       key: 'home-page',
     },
     {
-      label: () => h(resolveComponent('router-link'), { to: '/articles/create' }, () => '喝点酒'),
+      label: () => h(resolveComponent('router-link'), { to: '/articles/create' }, () => '写文章'),
       key: 'beverage',
     },
   ];
