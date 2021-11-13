@@ -20,7 +20,7 @@
           type="primary"
           @click="loginHandle"
         >
-          验证
+          登录
         </NButton>
       </div>
     </NForm>
@@ -91,4 +91,15 @@
     justify-content: end;
   }
 </style>
-// https://cloud.tencent.com/developer/article/1446922 // 异常处理
+<!-- // https://cloud.tencent.com/developer/article/1446922 // 异常处理  -->
+<!-- // TODO 登录页换成 弹框登录？？ -->
+<!-- // TODO 回到顶部小组件 -->
+
+<!-- // TODO　后面基本上是搭积木， -->
+<!-- // TODO 在这之前，要吃透路由 -->
+<!-- // TODO Vue 原理 -->
+<!-- // TODO 自己写组件 -->
+<!-- // TODO 权限控制 -->
+<!-- // TODO　状态管理 -->
+<!-- // TODO 文件上传 -->
+<!-- // TODO markdown 编辑器 -->

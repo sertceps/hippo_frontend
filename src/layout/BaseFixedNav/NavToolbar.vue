@@ -2,16 +2,24 @@
   <NDropdown v-if="userStore.token" trigger="hover" :options="options" :show-arrow="true" @select="handleSelect">
     <NAvatar class="avatar" round size="medium" :src="avatarImageUrl" draggable="false" />
   </NDropdown>
-  <NButton v-else class="login-button" @click="handleLogin">登录</NButton>
+  <NButton
+    v-else
+    :class="{ 'login-button': true, 'login-button-hidden': globalStore.isLoginButtonShow }"
+    @click="handleLogin"
+    >登录</NButton
+  >
 </template>
 
 <script setup lang="ts">
   import avatarImageUrl from '@/assets/images/avatar.jpg';
   import router from '@/router';
   import { useUserStore } from '@/store';
+  import { useGlobalStore } from '@/store';
   const { $message: Message } = window;
 
   const userStore = useUserStore();
+  const globalStore = useGlobalStore();
+
   const options = [
     {
       label: '退出登录',
@@ -38,5 +46,8 @@
   }
   .login-button {
     margin-left: auto;
+  }
+  .login-button-hidden {
+    display: none;
   }
 </style>

@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import { useUserStore } from '@/store';
+import { useUserStore, useGlobalStore } from '@/store';
 
 const Layout = () => import('@/layout/index.vue');
 
@@ -39,6 +39,10 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: '',
         component: () => import('@/views/login/index.vue'),
+        beforeEnter: (to, from) => {
+          const globalStore = useGlobalStore();
+          globalStore.isLoginButtonShow = true;
+        },
       },
     ],
   },
@@ -65,6 +69,10 @@ router.beforeEach((to, from, next) => {
   if (BLACK_LIST.includes(to.path) && userStore.token && userStore.jwt_expires_in) return next({ path: from.fullPath });
 
   return next();
+});
+router.afterEach((to, from) => {
+  const globalStore = useGlobalStore();
+  if (from.path === '/login' && to.path !== '/login') globalStore.isLoginButtonShow = false;
 });
 
 export default router;
