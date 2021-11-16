@@ -55,7 +55,9 @@
     userStore.setToken(accessToken);
     userStore.setExpires(jwtExpiresIn);
     message.success('登录成功');
-    router.replace('/');
+    // router.replace({ name: 'Home' });
+    // 页面不会重载
+    router.replace({ path: '/' });
   };
 
   const rules = {

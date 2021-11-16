@@ -29,14 +29,16 @@
   function handleSelect(key: string) {
     if (key === 'logout') {
       userStore.removeToken();
-      router.replace('/');
+      // router.replace({ name: 'Home' });
+      // 页面不会重载？
+      router.replace({ path: '/' });
       Message.info('已退出登录');
     }
   }
   function handleLogin() {
     // 为什么直接在 button 中直接 push 不行？
     // 是因为没有唯一根元素吗
-    router.push('/login');
+    router.push({ name: 'Login' });
   }
 </script>
 

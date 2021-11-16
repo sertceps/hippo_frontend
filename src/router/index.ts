@@ -23,10 +23,12 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'create',
+        name: 'ArticleCreate',
         component: () => import('@/views/article/create/index.vue'),
       },
       {
         path: 'show/:id',
+        name: 'ArticleShow',
         component: () => import('@/views/article/show/index.vue'),
       },
     ],
@@ -38,6 +40,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '',
+        name: 'Login',
         component: () => import('@/views/login/index.vue'),
         beforeEnter: (to, from) => {
           const globalStore = useGlobalStore();

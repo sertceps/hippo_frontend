@@ -37,7 +37,7 @@
       const { id } = await createArticlesApi(title.value, content.value);
       message.success('发布成功');
       // 这里
-      router.push(`/articles/show/${id}`);
+      router.push({ name: 'ArticleShow', params: { id } });
     } catch (err) {
       message.error(err as string);
     }

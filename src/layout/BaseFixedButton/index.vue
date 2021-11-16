@@ -1,6 +1,6 @@
 <template>
   <NDropdown trigger="hover" :options="options" :show-arrow="true">
-    <NButton circle color="#fff" class="float-button" @click="router.push('/articles/create')">
+    <NButton circle color="#fff" class="float-button" @click="router.push({ name: 'ArticleCreate' })">
       <IconConfigProvider color="green" size="26">
         <Icon>
           <EditOutlined></EditOutlined>
